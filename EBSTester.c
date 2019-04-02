@@ -11,7 +11,7 @@
 int main()
 {
   int fd = open("/data/cachetraces44", 0);
-  int writefd = open("testingFile", O_CREAT|O_WRONLY);
+  //int writefd = open("testingFile", O_CREAT|O_WRONLY);
   char *buff = malloc(READ_AMT);
   clock_t begin = clock();
   
@@ -24,14 +24,14 @@ int main()
     }
     bytesread += res;
   }
-  int written = write(writefd, buff, READ_AMT);
-  close(writefd);
   clock_t end = clock();
+  /*int written = write(writefd, buff, READ_AMT);
+  close(writefd);
   printf("%d\n", written);
   if(written < 0){
 	printf("%d\n", errno);
-  }
+  }*/
   double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-  printf("%d %f\n", read, time_spent);
+  printf("%d %f\n", bytesread, time_spent);
   return 0;
 }

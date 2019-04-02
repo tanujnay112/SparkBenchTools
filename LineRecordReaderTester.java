@@ -17,6 +17,8 @@ public class LineRecordReaderTester {
       throws IOException, InterruptedException {
     JobConf job = new JobConf();
     job.setInt("io.file.buffer.size", 64*1024);
+    job.set("fs.s3a.access.key", System.getenv("AWS_ACCESS_KEY_ID"));
+    job.set("fs.s3a.secret.key", System.getenv("AWS_SECRET_ACCESS_KEY"));
     FileSplit split = new FileSplit(new Path(args[0]),
         Long.parseLong(args[1]), Long.parseLong(args[2]), job);
     String delimiter = "\n";
